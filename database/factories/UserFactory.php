@@ -23,8 +23,9 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $fakerAr = \Faker\Factory::create('ar_SA');
         return [
-            'name' => fake()->name(),
+            'name' => $fakerAr->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

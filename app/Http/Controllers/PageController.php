@@ -24,7 +24,9 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('about');
+        $about = \App\Models\About::first();
+        $subtitle="من نحن ";
+        return view('about', compact('about','subtitle'));
     }
     public function contact()
     {
