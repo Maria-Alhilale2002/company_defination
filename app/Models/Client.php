@@ -27,7 +27,7 @@ class Client extends Model
 
      public function products(): HasMany
     {
-        return $this->hasMany(Products::class, 'client_id', 'client_id');
+        return $this->hasMany(Products::class, 'id', 'id');
     }
 
 }

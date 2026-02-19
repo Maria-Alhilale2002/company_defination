@@ -15,6 +15,9 @@ class About extends Model
         'vision_image',
         'vision_text',
         'about_text',
+        'story_text',
+        'principle_text',
+        'message_text',
         'vision_text_en',
         'about_text_en',
     ];

@@ -54,8 +54,10 @@ class AboutController extends Controller
         'vision_image'=>'sometimes|nullable',
         'vision_text'=>'sometimes|string',
         'about_text'=>'sometimes|string',
-        'vision_text_en'=>'sometimes|nullable|string',
-        'about_text_en'=>'sometimes|nullable|string',
+        'story_text'=>'sometimes|string',
+        'message_text'=>'sometimes|string',
+        'principle_text'=>'sometimes|string',
+
    ]);
    $about->update($validatedData);
     return response()->json($about,200);

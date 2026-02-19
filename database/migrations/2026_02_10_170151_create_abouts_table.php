@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('vision_image')->nullable();
             $table->text('vision_text')->nullable();
             $table->text('about_text')->nullable();
+            $table->text('story_text')->nullable();
+            $table->text('message_text')->nullable();
+            $table->text('principle_text')->nullable();
             $table->text('vision_text_en')->nullable();
             $table->text('about_text_en')->nullable();
             $table->timestamps();

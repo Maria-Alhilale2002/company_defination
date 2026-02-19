@@ -22,6 +22,6 @@ class Product extends Model
 
     public function client(): BelongsTo
     {
-        return $this->belongsTo(Client::class, 'client_id', 'client_id');
+        return $this->belongsTo(Client::class, 'id', 'id');
     }
 }
