@@ -23,7 +23,7 @@ class ContactController extends Controller
     {
         $validatedData=$request->validate([
         'name'=>'required|min:5',
-        'email'=>'required',
+        'email'=>'required|email',
         'subject'=>'string',
         'message'=>'string',
         'name_en'=>'nullable|string',
@@ -31,8 +31,11 @@ class ContactController extends Controller
         'message_en'=>'nullable|string',
    ]);
    $contact=Contact::create($validatedData);
-    return response()->json($contact,201);
-    }
+   return response()->json([
+            'success' => true,
+            'message' => 'تم إرسال الرسالة بنجاح',
+            'data' => $contact
+        ], 201);    }
 
     /**
      * Display the specified resource.

@@ -20,11 +20,13 @@
                     <h2 class="form-title">أرسل لنا رسالة</h2>
                     <p class="form-subtitle">املأ النموذج وسنتواصل معك في أقرب وقت ممكن</p>
                     
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" method="post" action="{{ route('send') }}">
+                        <!-- عشان تشفير البيانات وحمايتها -->
+                        @csrf 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">الاسم الكامل *</label>
-                                <input type="text" id="name" name="name" required>
+                                <input type="text" id="name" name="name" required >
                             </div>
                             
                             <div class="form-group">
@@ -32,15 +34,7 @@
                                 <input type="email" id="email" name="email" required>
                             </div>
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">رقم الهاتف *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            
-                        </div>
-                        
+            
                         <div class="form-group">
                             <label for="subject">الموضوع *</label>
                             <input type="text" id="subject" name="subject" required>
@@ -147,5 +141,34 @@
     </section>
    @extends('layout.footer')
     <script src="{{ asset('script.js') }}"></script>
+
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // منع إرسال الفورم بالطريقة التقليدية
+    
+    const formData = new FormData(this);
+    
+    fetch('{{ route("send") }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // عرض رسالة نجاح
+        alert('تم إرسال الرسالة بنجاح!');
+        this.reset(); // إعادة تعيين الفورم
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        // عرض رسالة خطأ
+        alert('حدث خطأ أثناء الإرسال');
+        console.error('Error:', error);
+    });
+});
+</script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -9,23 +10,29 @@ class PageController extends Controller
     //
     public function index()
     {
-        return view('index');
-    }
+        $home = \App\Models\Home::first();
+        $subtitle=" نقدم حلول تقنية متكاملة لنجاح أعمالك ";
+        return view('index', compact('home','subtitle'));    
+        }
 
     public function services()
-    {
-        return view('services');
+    {   
+        $service = \App\Models\Service::first();
+        $subtitle=" نقدم حلول تقنية متكاملة لنجاح أعمالك ";
+        return view('services', compact('service','subtitle'));
     }
 
     public function products()
     {
-        return view('products');
+        $product = \App\Models\Service::first();
+        $subtitle=" تصفح أعمالنا ومشاريعنا الناجحة ";
+        return view('products', compact('product','subtitle'));
     }
 
     public function about()
     {
         $about = \App\Models\About::first();
-        $subtitle="من نحن ";
+        $subtitle="شركة رائدة في مجال البرمجيات والتطوير";
         return view('about', compact('about','subtitle'));
     }
     public function contact()

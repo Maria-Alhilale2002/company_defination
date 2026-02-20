@@ -70,4 +70,18 @@ class ProductController extends Controller
         $product->delete();
         return response()->json($product,200);
     }
+
+    public function clear($id)
+{
+    $product = Product::findOrFail($id);
+    
+    // قم بتفريغ الحقول حسب جدول المنتجات لديك
+    $product->update([
+        'product_name' => null,
+        'product_description' => null,
+        // أضف باقي الحقول التي تريد تفريغها
+    ]);
+    
+    return redirect()->back()->with('success', 'تم تفريغ محتوى المنتجات بنجاح');
+}
 }

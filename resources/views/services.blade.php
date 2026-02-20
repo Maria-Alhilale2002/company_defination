@@ -4,7 +4,7 @@
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">خدماتنا</h1>
-            <p class="page-subtitle">نقدم حلول تقنية متكاملة لنجاح أعمالك</p>
+            <p class="page-subtitle">{{$subtitle}}</p>
         </div>
         <div class="header-shapes">
             <div class="shape shape-1"></div>
@@ -21,10 +21,9 @@
                     <div class="service-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3 class="service-title">تصميم المواقع</h3>
+                    <h3 class="service-title"> تصميم مواقع الكترونية </h3>
                     <p class="service-description">
-                        نصمم مواقع إلكترونية احترافية ومتجاوبة مع جميع الأجهزة
-                    </p>
+                         {{ $service->service_description_web ?? 'websites...'}}                    </p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i> تصميم متجاوب</li>
                         <li><i class="fas fa-check"></i> سرعة عالية</li>
@@ -40,7 +39,7 @@
                     </div>
                     <h3 class="service-title">برمجة التطبيقات</h3>
                     <p class="service-description">
-                        نطور تطبيقات الهواتف الذكية لأنظمة iOS و Android
+                         {{ $service->service_description_app ?? 'application...'}}                    </p>
                     </p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i> iOS & Android</li>
@@ -57,7 +56,7 @@
                     </div>
                     <h3 class="service-title">التسويق الإلكتروني</h3>
                     <p class="service-description">
-                        نساعدك في الوصول لجمهورك المستهدف وزيادة مبيعاتك
+                         {{ $service->service_description_marketing ?? 'marketing...'}}                    </p>
                     </p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i> إدارة حسابات</li>

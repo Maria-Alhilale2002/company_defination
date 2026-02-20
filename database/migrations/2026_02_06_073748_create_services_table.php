@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id('service_id');
             $table->string('service_name');
             $table->text('service_description')->nullable();
+            $table->text('service_description_web')->nullable();
+            $table->text('service_description_app')->nullable();
+            $table->text('service_description_marketing')->nullable();
             $table->string('service_image')->nullable();
             $table->string('service_name_en')->nullable();
             $table->text('service_description_en')->nullable();

@@ -5,7 +5,7 @@
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">معرض أعمالنا</h1>
-            <p class="page-subtitle">مشاريع ناجحة نفخر بإنجازها لعملائنا</p>
+            <p class="page-subtitle">{{ $subtitle }}</p>
         </div>
         <div class="header-shapes">
             <div class="shape shape-1"></div>

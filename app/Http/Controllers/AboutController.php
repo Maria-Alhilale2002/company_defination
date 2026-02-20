@@ -27,6 +27,9 @@ class AboutController extends Controller
         'vision_image'=>'nullable',
         'vision_text'=>'string',
         'about_text'=>'string',
+        'story_text'=>'nullable|string',
+        'message_text'=>'nullable|string',
+        'principle_text'=>'nullable|string',
         'vision_text_en'=>'nullable|string',
         'about_text_en'=>'nullable|string',
    ]);
@@ -46,23 +49,34 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,int $id)
-    {
-        $about=About::findOrFail($id);
-        $validatedData=$request->validate([
-        'about_image'=>'sometimes|nullable',
-        'vision_image'=>'sometimes|nullable',
-        'vision_text'=>'sometimes|string',
-        'about_text'=>'sometimes|string',
-        'story_text'=>'sometimes|string',
-        'message_text'=>'sometimes|string',
-        'principle_text'=>'sometimes|string',
+    public function update(Request $request, int $id)
+{
+    $about = About::findOrFail($id);
+    
+    $validatedData = $request->validate([
+        'about_image' => 'sometimes|nullable',
+        'vision_image' => 'sometimes|nullable',
+        'vision_text' => 'nullable|string',
+        'about_text' => 'nullable|string',
+        'story_text' => 'nullable|string',
+        'message_text' => 'nullable|string',
+        'principle_text' => 'nullable|string',
+    ]);
 
-   ]);
-   $about->update($validatedData);
-    return response()->json($about,200);
-
+    // إزالة الحقول الفارغة من البيانات المرسلة
+    foreach ($validatedData as $key => $value) {
+        if ($value === '' || $value === null) {
+            unset($validatedData[$key]); // إزالة الحقل الفارغ
+        }
     }
+
+    // تحديث فقط الحقول التي لها قيم
+    if (!empty($validatedData)) {
+        $about->update($validatedData);
+    }
+    
+    return redirect()->back()->with('success', 'تم التحديث بنجاح');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -74,4 +88,23 @@ class AboutController extends Controller
         return response()->json($about,200);
 
     }
+
+
+    public function clear($id)
+{
+    $about = About::findOrFail($id);
+    
+    // تفريغ جميع الحقول
+    $about->update([
+        'about_text' => null,
+        'vision_text' => null,
+        'story_text' => null,
+        'message_text' => null,
+        'principle_text' => null,
+        'about_text_en' => null,
+        'vision_text_en' => null,
+    ]);
+    
+    return redirect()->back()->with('success', 'تم تفريغ محتوى صفحة من نحن بنجاح');
+}
 }

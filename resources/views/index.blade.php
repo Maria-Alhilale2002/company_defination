@@ -6,16 +6,16 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    <span class="title-line">نحول أفكارك إلى</span>
-                    <span class="title-highlight">حلول رقمية متقدمة</span>
+                    <span class="title-line">{{ $home->main_text ?? 'نحول أفكارك إلى'}}</span>
+                    <span class="title-highlight">{{ $home->next_text ?? 'حلول رقمية متكاملة' }}</span>
                 </h1>
                 <p class="hero-description">
-                    شركة رائدة في مجال البرمجيات والتطوير، نقدم خدمات متميزة في برمجة المواقع والتطبيقات والتسويق الرقمي
+                    {{ $home->description_text ?? 'شركة رائدة في مجال البرمجيات والتطوير، نقدم خدمات متميزة في برمجة المواقع والتطبيقات والتسويق الرقمي' }}
                 </p>
                 <div class="hero-buttons">
                     <button class="btn-primary">ابدأ مشروعك</button>
-                    <button class="btn-secondary">
-                        <i class="fas fa-play"></i>
+                    <button class="btn-secondary" onclick="window.location.href='/products'">
+                        <i class="fas fa-play" ></i>
                         شاهد أعمالنا
                     </button>
                 </div>
@@ -142,7 +142,7 @@
                 </p>
                 <div class="cta-buttons">
                     <button class="btn-primary">ابدأ الآن</button>
-                    <button class="btn-outline">تواصل معنا</button>
+                    <button class="btn-outline" onclick="window.location.href='/contact'" >تواصل معنا</button>
                 </div>
             </div>
         </div>
