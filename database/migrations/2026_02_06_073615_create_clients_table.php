@@ -20,9 +20,8 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->string('client_logo')->nullable();
-            $table->text('client_feature')->nullable();
+            $table->boolean('is_featured')->default(false);
             $table->string('client_name_en')->nullable();
-            $table->text('client_feature_en')->nullable();
             $table->timestamps();
         });
     }

@@ -61,4 +61,22 @@ class ClientController extends Controller
 
         return redirect()->back()->with('success', 'تم حذف المستخدم بنجاح');
     }
+
+    public function toggleFeatured($id)
+    {
+        $client = Client::findOrFail($id);
+
+        // منع تعديل حالة المستخدم الحالي
+        if ($client->client_id === Auth::guard('client')->id()) {
+            return redirect()->back()->with('error', 'لا يمكنك تعديل حالة حسابك الخاص');
+        }
+
+        // تبديل حالة العميل المميز
+        $client->is_featured = !$client->is_featured;
+        $client->save();
+
+        $message = $client->is_featured ? 'تم إضافة العميل إلى قائمة العملاء المميزين' : 'تم إزالة العميل من قائمة العملاء المميزين';
+
+        return redirect()->back()->with('success', $message);
+    }
 }

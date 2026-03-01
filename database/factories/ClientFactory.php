@@ -25,9 +25,8 @@ class ClientFactory extends Factory
             'client_email' => $this->faker->unique()->safeEmail(),
             'client_password' => Hash::make('password'),
             'client_logo' => $this->faker->imageUrl(100, 100, 'business'),
-            'client_feature' => $fakerAr->realText(),
+            'is_featured' => $this->faker->boolean(30), // 30% احتمال أن يكون مميز
             'client_name_en' => $this->faker->company(),
-            'client_feature_en' => $this->faker->sentence(),
         ];
     }
 }

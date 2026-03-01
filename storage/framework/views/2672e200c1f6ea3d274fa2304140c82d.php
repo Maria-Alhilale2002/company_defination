@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>إدارة المستخدمين - تك رووت</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('style.css')); ?>">
     <style>
         .btn-star {
             background: #ffc107;
@@ -255,19 +255,21 @@
 </head>
 <body>
     <!-- عرض رسائل النجاح والخطأ -->
-    @if(session('success'))
+    <?php if(session('success')): ?>
         <div class="alert-success">
             <i class="fas fa-check-circle"></i>
-            {{ session('success') }}
-        </div>
-    @endif
+            <?php echo e(session('success')); ?>
 
-    @if(session('error'))
+        </div>
+    <?php endif; ?>
+
+    <?php if(session('error')): ?>
         <div class="alert-error">
             <i class="fas fa-exclamation-circle"></i>
-            {{ session('error') }}
+            <?php echo e(session('error')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
     <!-- Admin Header -->
     <header class="admin-header">
@@ -292,11 +294,11 @@
         <div class="admin-page-header">
             <h1>إدارة المستخدمين</h1>
             <div style="display: flex; gap: 1rem; align-items: center;">
-                <a href="{{ route('admin') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                <a href="<?php echo e(route('admin')); ?>" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
                     <i class="fas fa-arrow-right"></i>
                     العودة للوحة التحكم
                 </a>
-                <a href="{{ route('admin.create.user') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-100); color: var(--text-dark); text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                <a href="<?php echo e(route('admin.create.user')); ?>" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-100); color: var(--text-dark); text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
                     <i class="fas fa-user-plus"></i>
                     إضافة مستخدم جديد
                 </a>
@@ -318,56 +320,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($clients as $index => $client)
+                    <?php $__empty_1 = true; $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td>{{ $index + 1 }}</td>
+                            <td><?php echo e($index + 1); ?></td>
                             <td>
                                 <div class="page-name">
                                     <i class="fas fa-user"></i>
-                                    {{ $client->client_name }}
+                                    <?php echo e($client->client_name); ?>
+
                                 </div>
                             </td>
-                            <td><span class="page-link">{{ $client->client_email }}</span></td>
+                            <td><span class="page-link"><?php echo e($client->client_email); ?></span></td>
                             <td>
-                                <span class="user-role {{ $client->role == 'admin' ? 'role-admin' : 'role-client' }}">
-                                    @if($client->role == 'admin')
+                                <span class="user-role <?php echo e($client->role == 'admin' ? 'role-admin' : 'role-client'); ?>">
+                                    <?php if($client->role == 'admin'): ?>
                                         <i class="fas fa-crown"></i> مدير
-                                    @else
+                                    <?php else: ?>
                                         <i class="fas fa-user"></i> مستخدم
-                                    @endif
+                                    <?php endif; ?>
                                 </span>
                             </td>
                             <td>
-                                <span class="status-badge {{ $client->is_active ? 'active' : 'inactive' }}">
-                                    {{ $client->is_active ? 'نشط' : 'غير نشط' }}
+                                <span class="status-badge <?php echo e($client->is_active ? 'active' : 'inactive'); ?>">
+                                    <?php echo e($client->is_active ? 'نشط' : 'غير نشط'); ?>
+
                                 </span>
                             </td>
-                            <td>{{ $client->created_at->format('Y-m-d') }}</td>
+                            <td><?php echo e($client->created_at->format('Y-m-d')); ?></td>
                             <td>
                                 <div class="action-buttons">
-                                    @if($client->client_id !== auth('client')->id())
-                                        <button class="btn-star {{ $client->is_featured ? 'featured' : '' }}" 
-                                                onclick="toggleFeatured({{ $client->client_id }}, '{{ $client->client_name }}', {{ $client->is_featured ? 'true' : 'false' }})" 
-                                                title="{{ $client->is_featured ? 'إزالة من العملاء المميزين' : 'إضافة للعملاء المميزين' }}">
+                                    <?php if($client->client_id !== auth('client')->id()): ?>
+                                        <button class="btn-star <?php echo e($client->is_featured ? 'featured' : ''); ?>" 
+                                                onclick="toggleFeatured(<?php echo e($client->client_id); ?>, '<?php echo e($client->client_name); ?>', <?php echo e($client->is_featured ? 'true' : 'false'); ?>)" 
+                                                title="<?php echo e($client->is_featured ? 'إزالة من العملاء المميزين' : 'إضافة للعملاء المميزين'); ?>">
                                             <i class="fas fa-star"></i>
                                         </button>
-                                        <button class="btn-delete" onclick="deleteUser({{ $client->client_id }}, '{{ $client->client_name }}')" title="حذف">
+                                        <button class="btn-delete" onclick="deleteUser(<?php echo e($client->client_id); ?>, '<?php echo e($client->client_name); ?>')" title="حذف">
                                             <i class="fas fa-trash"></i>
                                         </button>
-                                    @else
+                                    <?php else: ?>
                                         <span style="color: #999; font-size: 0.8rem;">الحساب الحالي</span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="7" style="text-align: center; padding: 40px; color: #999;">
                                 <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
                                 لا توجد مستخدمين مسجلين
                             </td>
                         </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -483,3 +487,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\Users\Aseel Online\example-app\resources\views/client_view.blade.php ENDPATH**/ ?>

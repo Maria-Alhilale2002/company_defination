@@ -50,48 +50,70 @@
             </div>
             
             <div class="clients-grid">
-                <div class="client-card">
-                    <div class="client-avatar">
-                        <i class="fas fa-user-tie"></i>
+                @forelse($featuredClients as $client)
+                    <div class="client-card">
+                        <div class="client-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="client-info">
+                            <h3 class="client-name">{{ $client->client_name }}</h3>
+                            <p class="client-company">{{ $client->client_name_en ?? 'عميل مميز' }}</p>
+                            <p class="client-service">
+                                @if($client->products->count() > 0)
+                                    {{ $client->products->first()->product_name }}
+                                @else
+                                    خدمات متنوعة
+                                @endif
+                            </p>
+                            <p class="client-testimonial">
+                                "عميل مميز يثق في خدماتنا ونفخر بالعمل معه"
+                            </p>
+                        </div>
                     </div>
-                    <div class="client-info">
-                        <h3 class="client-name">أحمد محمد</h3>
-                        <p class="client-company">شركة التجارة الذكية</p>
-                        <p class="client-service">تطوير موقع إلكتروني متكامل</p>
-                        <p class="client-testimonial">
-                            "خدمة ممتازة وتصميم رائع، الموقع ساعدنا في زيادة المبيعات بنسبة 150%"
-                        </p>
+                @empty
+                    <!-- عرض العملاء الوهميين في حالة عدم وجود عملاء مميزين -->
+                    <div class="client-card">
+                        <div class="client-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="client-info">
+                            <h3 class="client-name">أحمد محمد</h3>
+                            <p class="client-company">شركة التجارة الذكية</p>
+                            <p class="client-service">تطوير موقع إلكتروني متكامل</p>
+                            <p class="client-testimonial">
+                                "خدمة ممتازة وتصميم رائع، الموقع ساعدنا في زيادة المبيعات بنسبة 150%"
+                            </p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="client-card">
-                    <div class="client-avatar">
-                        <i class="fas fa-user-graduate"></i>
+                    
+                    <div class="client-card">
+                        <div class="client-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="client-info">
+                            <h3 class="client-name">سارة أحمد</h3>
+                            <p class="client-company">أكاديمية التعلم الحديث</p>
+                            <p class="client-service">تطبيق تعليمي للهواتف الذكية</p>
+                            <p class="client-testimonial">
+                                "تطبيق رائع وسهل الاستخدام، طلابنا يحبونه ونسبة التفاعل عالية جداً"
+                            </p>
+                        </div>
                     </div>
-                    <div class="client-info">
-                        <h3 class="client-name">سارة أحمد</h3>
-                        <p class="client-company">أكاديمية التعلم الحديث</p>
-                        <p class="client-service">تطبيق تعليمي للهواتف الذكية</p>
-                        <p class="client-testimonial">
-                            "تطبيق رائع وسهل الاستخدام، طلابنا يحبونه ونسبة التفاعل عالية جداً"
-                        </p>
+                    
+                    <div class="client-card">
+                        <div class="client-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="client-info">
+                            <h3 class="client-name">د. محمد علي</h3>
+                            <p class="client-company">عيادة الصحة المتقدمة</p>
+                            <p class="client-service">نظام إدارة المرضى وحملة تسويقية</p>
+                            <p class="client-testimonial">
+                                "نظام متطور وحملة تسويقية ناجحة، زاد عدد المرضى بشكل ملحوظ"
+                            </p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="client-card">
-                    <div class="client-avatar">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="client-info">
-                        <h3 class="client-name">د. محمد علي</h3>
-                        <p class="client-company">عيادة الصحة المتقدمة</p>
-                        <p class="client-service">نظام إدارة المرضى وحملة تسويقية</p>
-                        <p class="client-testimonial">
-                            "نظام متطور وحملة تسويقية ناجحة، زاد عدد المرضى بشكل ملحوظ"
-                        </p>
-                    </div>
-                </div>
-                
+                @endforelse
             </div>
         </div>
     </section>

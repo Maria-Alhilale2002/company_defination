@@ -24,9 +24,8 @@ class Client extends Authenticatable
         'role',
         'is_active',
         'client_logo',
-        'client_feature',
+        'is_featured',
         'client_name_en',
-        'client_feature_en',
     ];
 
     protected $hidden = [
@@ -38,6 +37,7 @@ class Client extends Authenticatable
     {
         return [
             'is_active' => 'boolean',
+            'is_featured' => 'boolean',
         ];
     }
 
@@ -68,6 +68,11 @@ class Client extends Authenticatable
     public function isActive(): bool
     {
         return $this->is_active;
+    }
+
+    public function isFeatured(): bool
+    {
+        return $this->is_featured;
     }
 
     public function products(): HasMany

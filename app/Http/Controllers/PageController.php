@@ -8,9 +8,14 @@ class PageController extends Controller
     public function index()
     {
         $home = \App\Models\Home::first();
+        $featuredClients = \App\Models\Client::where('is_featured', true)
+                                           ->where('role', 'client')
+                                           ->orderBy('created_at', 'desc')
+                                           ->limit(6)
+                                           ->get();
         $subtitle = ' نقدم حلول تقنية متكاملة لنجاح أعمالك ';
 
-        return view('index', compact('home', 'subtitle'));
+        return view('index', compact('home', 'featuredClients', 'subtitle'));
     }
 
     public function services()

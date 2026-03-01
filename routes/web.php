@@ -49,6 +49,7 @@ Route::middleware(['client.auth', 'client.admin'])->group(function () {
     Route::get('/admin', [ClientController::class, 'adminDashboard'])->name('admin');
     Route::get('/admin/clients', [ClientController::class, 'viewClients'])->name('admin.clients');
     Route::delete('/admin/clients/{id}', [ClientController::class, 'deleteClient'])->name('admin.clients.delete');
+    Route::post('/admin/clients/{id}/toggle-featured', [ClientController::class, 'toggleFeatured'])->name('admin.clients.toggle-featured');
 
     // مسارات إدارة المنتجات
     Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
