@@ -157,6 +157,39 @@
             align-items: center;
             gap: 10px;
         }
+
+        /* تحسين مظهر الأزرار في header */
+        .admin-page-header {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-page-header a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(91, 33, 182, 0.3);
+        }
+
+        .admin-page-header a[style*="var(--gray-100)"]:hover {
+            background: var(--primary-color) !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .admin-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .admin-page-header > div {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .admin-page-header a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,6 +223,24 @@
         <!-- Page Title -->
         <div class="admin-page-header">
             <h1>إدارة صفحات الموقع</h1>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="{{ route('index') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-home"></i>
+                    الصفحة الرئيسية
+                </a>
+                <a href="{{ route('admin.create.user') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-100); color: var(--text-dark); text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-user-plus"></i>
+                    إنشاء مستخدم
+                </a>
+                <a href="{{ route('admin.clients') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-100); color: var(--text-dark); text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-users"></i>
+                    إدارة المستخدمين
+                </a>
+                <a href="{{ route('client.profile') }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--gray-100); color: var(--text-dark); text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-user"></i>
+                    الملف الشخصي
+                </a>
+            </div>
         </div>
 
         <!-- Pages Table -->
@@ -268,10 +319,10 @@
                         <td>2024-01-15</td>
                         <td>
                             <div class="action-buttons">
-                                <button class="btn-edit" onclick="window.location.href='/edit_products'" title="تعديل">
-                                    <i class="fas fa-edit"></i>
+                                <button class="btn-view" onclick="event.stopPropagation(); window.location.href='{{ route('admin.products.index') }}'" title="عرض">
+                                    <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="btn-clear" onclick="clearPage('products', 1)" title="تفريغ المحتوى">
+                                <button class="btn-clear" onclick="event.stopPropagation(); clearPage('products', 1)" title="تفريغ المحتوى">
                                     <i class="fas fa-eraser"></i>
                                 </button>
                             </div>

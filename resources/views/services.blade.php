@@ -29,7 +29,7 @@
                         <li><i class="fas fa-check"></i> سرعة عالية</li>
                         <li><i class="fas fa-check"></i> تحسين SEO</li>
                     </ul>
-                    <button class="btn-primary">اطلب الخدمة</button>
+                    <button class="btn-primary" onclick="window.open('https://wa.me/967778274221', '_blank')">اطلب الخدمة</button>
                 </div>
 
                 <!-- Service 2 -->
@@ -46,7 +46,7 @@
                         <li><i class="fas fa-check"></i> واجهات جذابة</li>
                         <li><i class="fas fa-check"></i> أداء سريع</li>
                     </ul>
-                    <button class="btn-primary">اطلب الخدمة</button>
+                    <button class="btn-primary" onclick="window.open('https://wa.me/967778274221', '_blank')">اطلب الخدمة</button>
                 </div>
 
                 <!-- Service 3 -->
@@ -63,7 +63,7 @@
                         <li><i class="fas fa-check"></i> حملات إعلانية</li>
                         <li><i class="fas fa-check"></i> تحليل النتائج</li>
                     </ul>
-                    <button class="btn-primary">اطلب الخدمة</button>
+                    <button class="btn-primary" onclick="window.open('https://wa.me/967778274221', '_blank')">اطلب الخدمة</button>
                 </div>
             </div>
         </div>

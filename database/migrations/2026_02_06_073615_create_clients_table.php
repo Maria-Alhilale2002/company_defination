@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('client_name');
             $table->string('client_email')->unique();
             $table->string('client_password');
+            $table->enum('role', ['admin', 'client'])->default('client');
+            $table->boolean('is_active')->default(true);
+            $table->rememberToken();
             $table->string('client_logo')->nullable();
             $table->text('client_feature')->nullable();
             $table->string('client_name_en')->nullable();

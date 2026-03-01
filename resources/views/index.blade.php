@@ -13,7 +13,7 @@
                     {{ $home->description_text ?? 'شركة رائدة في مجال البرمجيات والتطوير، نقدم خدمات متميزة في برمجة المواقع والتطبيقات والتسويق الرقمي' }}
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary">ابدأ مشروعك</button>
+                    <button class="btn-primary" onclick="window.open('https://wa.me/967778274221', '_blank')">ابدأ مشروعك</button>
                     <button class="btn-secondary" onclick="window.location.href='/products'">
                         <i class="fas fa-play" ></i>
                         شاهد أعمالنا
@@ -141,7 +141,7 @@
                     انضم إلى عملائنا الراضين واحصل على حلول تقنية متقدمة تساعدك على تحقيق أهدافك
                 </p>
                 <div class="cta-buttons">
-                    <button class="btn-primary">ابدأ الآن</button>
+                    <button class="btn-primary" onclick="window.open('https://wa.me/967778274221', '_blank')" >ابدأ الآن</button>
                     <button class="btn-outline" onclick="window.location.href='/contact'" >تواصل معنا</button>
                 </div>
             </div>

@@ -37,8 +37,7 @@
                 </ul>
                 
                 <div class="nav-actions"> 
-                    <button class="register-btn">تسجيل</button> 
-                    <div class="hamburger">
+<button class="register-btn" onclick="window.location.href='{{ route('client.register.page') }}'">تسجيل</button>                    <div class="hamburger">
                         <span></span>
                         <span></span>
                         <span></span>
