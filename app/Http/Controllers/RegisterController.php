@@ -58,4 +58,11 @@ class RegisterController extends Controller
 
         return redirect()->route('admin')->with('success', 'تم إنشاء المستخدم بنجاح');
     }
+
+
+    public function index()
+      {
+          $client=Client::all();
+          return response()->json($client,200);
+      }
 }
