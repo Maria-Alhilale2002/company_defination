@@ -727,12 +727,59 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-container {
+        position: relative;
+    }
+    
     .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 0 0 10px 10px;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        display: flex !important;
+    }
+    
+    .nav-item {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 0.75rem 1rem;
+        width: 100%;
+    }
+    
+    .nav-link::after {
         display: none;
     }
     
     .hamburger {
         display: flex;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
     
     .hero-container {

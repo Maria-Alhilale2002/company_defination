@@ -24,24 +24,75 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu toggle
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
+
+    console.log('DOM Loaded - Hamburger:', hamburger);
+    console.log('DOM Loaded - Nav Menu:', navMenu);
+
+    if (hamburger && navMenu) {
+        console.log('Mobile menu initialized successfully');
+        
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Hamburger clicked!');
+            
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            console.log('Hamburger has active class:', hamburger.classList.contains('active'));
+            console.log('Nav menu has active class:', navMenu.classList.contains('active'));
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+                console.log('Menu opened');
+            } else {
+                body.style.overflow = '';
+                console.log('Menu closed');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.style.overflow = '';
+                console.log('Menu closed by link click');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    } else {
+        console.error('Hamburger or Nav Menu not found!');
+        console.error('Available elements:', {
+            hamburger: document.querySelector('.hamburger'),
+            navMenu: document.querySelector('.nav-menu')
+        });
+    }
+});
+
+// Mobile menu toggle (backup without DOMContentLoaded)
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const body = document.body;
 
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-}
+console.log('Immediate - Hamburger:', hamburger);
+console.log('Immediate - Nav Menu:', navMenu);
 
 // Active navigation link highlighting
 window.addEventListener('scroll', () => {
@@ -237,37 +288,6 @@ style.textContent = `
     .stat-item.scrolled {
         opacity: 1;
         transform: translateY(0);
-    }
-    
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-    }
-    
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu {
-            display: none;
-        }
     }
 `;
 document.head.appendChild(style);
